@@ -1,7 +1,1 @@
-[{
-    "id": "12334",
-    "title": "A Book",
-    "imageUrl": "https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg",
-    "description": "This is an awesome book!",
-    "price": "19"
-}]
+[{"id":"12334","title":"A Book","imageUrl":"https://www.publicdomainpictures.net/pictures/10000/velka/1-1210009435EGmE.jpg","description":"This is an awesome book!","price":"19"},{"title":"First BOOK","imageUrl":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fdkhlak.com%2Fthe-alchemist-when-dreams-come-true%2F&psig=AOvVaw33-XNORbVPUf6MSP8IaNMP&ust=1614200380059000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCLD_l5zzgO8CFQAAAAAdAAAAABAD","description":"the one","price":"20.20","id":"0.9573581716358919"}]

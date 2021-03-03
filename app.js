@@ -51,8 +51,8 @@ sequelize
 // .sync({ force: true })
     .sync()
     .then((result) => {
-        return User.findById(1);
-        // console.log(result);
+        //  return User.findById(1);
+        console.log(result);
     })
     .then((user) => {
         if (!user) {

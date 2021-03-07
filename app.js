@@ -4,9 +4,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const errorController = require("./controllers/error");
-const mongoConnect = require("./util/database").mongoConnect;
-const User = require("./models/user");
 
+const User = require("./models/user");
+const mongoose = require("mongoose");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -32,6 +32,13 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-mongoConnect(() => {
-    app.listen(3000);
-});
+mongoose
+    .connect(
+        "mongodb+srv://Mohamed9Yasser:qxRcvxU5eCXPfi2H@cluster0.vtzp8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+    )
+    .then((result) => {
+        app.listen(3000);
+    })
+    .catch((err) => {
+        console.log(err);
+    });

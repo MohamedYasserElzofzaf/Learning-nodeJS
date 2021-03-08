@@ -1,4 +1,3 @@
-const product = require("../models/product");
 const Product = require("../models/product");
 
 exports.getAddProduct = (req, res, next) => {
@@ -40,7 +39,6 @@ exports.getEditProduct = (req, res, next) => {
     }
     const prodId = req.params.productId;
     Product.findById(prodId)
-        // Product.findById(prodId)
         .then((product) => {
             if (!product) {
                 return res.redirect("/");
@@ -62,8 +60,7 @@ exports.postEditProduct = (req, res, next) => {
     const updatedImageUrl = req.body.imageUrl;
     const updatedDesc = req.body.description;
 
-    product
-        .findById(prodId)
+    Product.findById(prodId)
         .then((product) => {
             product.title = updatedTitle;
             product.price = updatedPrice;
@@ -92,7 +89,7 @@ exports.getProducts = (req, res, next) => {
 
 exports.postDeleteProduct = (req, res, next) => {
     const prodId = req.body.productId;
-    Product.findByIdAndDelete(prodId)
+    Product.findByIdAndRemove(prodId)
         .then(() => {
             console.log("DESTROYED PRODUCT");
             res.redirect("/admin/products");

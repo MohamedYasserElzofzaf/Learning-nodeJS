@@ -17,10 +17,11 @@ router.post(
         .isEmail()
         .withMessage("please add a valid email.")
         .custom((value, { req }) => {
-            if (value === "test@test.com") {
-                throw new Error("This email address is forbidden");
-            }
-            return true;
+            return User.findOne({ email: value }).then((userDoc) => {
+                if (userDoc) {
+                    return Promise.reject("Email is already exists");
+                }
+            });
         }),
         body(
             "password",

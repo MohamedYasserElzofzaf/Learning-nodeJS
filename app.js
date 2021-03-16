@@ -14,6 +14,7 @@ const User = require("./models/user");
 
 const MONGODB_URI =
     "mongodb+srv://Mohamed9Yasser:qxRcvxU5eCXPfi2H@cluster0.vtzp8.mongodb.net/Shop?retryWrites=true&w=majority";
+
 const app = express();
 const store = new MongoDBStore({
     uri: MONGODB_URI,
@@ -26,9 +27,13 @@ const fileStorage = multer.diskStorage({
         cb(null, "images");
     },
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + "-" + file.originalname);
+        cb(
+            null,
+            new Date().toISOString().replace(/:/g, "-") + "-" + file.originalname
+        );
     },
 });
+
 const fileFilter = (req, file, cb) => {
     if (
         file.mimetype === "image/png" ||
@@ -40,6 +45,7 @@ const fileFilter = (req, file, cb) => {
         cb(null, false);
     }
 };
+
 app.set("view engine", "ejs");
 app.set("views", "views");
 
@@ -51,8 +57,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
     multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
-
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(
     session({
         secret: "my secret",
@@ -114,6 +120,3 @@ mongoose
     .catch((err) => {
         console.log(err);
     });
-
-// 6045dfac08967b410453f2e2
-// "mongodb+srv://Mohamed9Yasser:qxRcvxU5eCXPfi2H@cluster0.vtzp8.mongodb.net/Shop?retryWrites=true&w=majority";
